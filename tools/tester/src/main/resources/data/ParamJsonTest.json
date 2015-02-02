@@ -1,0 +1,50 @@
+{
+  "group": "参数管理模块",
+  "test": true,
+  "cmdlist": [
+    {
+      "command": "addParam",
+      "cache": true,
+      "params": {
+        "parentId": "1",
+        "treeType": "g",
+        "paramCode": "test-test-test",
+        "paramType": "group",
+        "paramName": "test",
+        "paramValue": "110",
+        "description": "testdescription"
+      }
+    },
+    {
+      "command": "listParams",
+      "params": {
+        "id": "#addParam.id",
+        "parentId": "#addParam.parentId",
+        "treeType": "#addParam.treeType",
+        "paramCode": "#addParam.paramCode",
+        "paramType": "#addParam.paramType",
+        "paramName": "#addParam.paramName",
+        "paramValue": "#addParam.paramValue",
+        "description": "#addParam.description"
+      }
+    },
+    {
+      "command": "updateParam",
+      "params": {
+        "id": "#addParam.id",
+        "parentId": "#addParam.parentId",
+        "treeType": "#addParam.treeType",
+        "paramType": "#addParam.paramType",
+        "paramName": "#addParam.paramName",
+        "paramValue": "#addParam.paramValue",
+        "description": "#addParam.description"
+      }
+    },
+    {
+      "command": "deleteParam",
+      "params": {
+        "id": "#addParam.id"
+      }
+    }
+  ]
+}

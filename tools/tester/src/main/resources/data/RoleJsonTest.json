@@ -1,0 +1,48 @@
+{
+  "group": "角色管理模块",
+  "test": true,
+  "cmdlist": [
+    {
+      "command": "addRole",
+      "cache": true,
+      "params": {
+        "name": "apitest",
+        "description": "testdescription"
+      }
+    },
+    {
+      "command": "listRoles",
+      "params": {
+        "id": "#addRole.id",
+        "name": "#addRole.name",
+        "description": "#addRole.description"
+      }
+    },
+    {
+      "command": "updateRole",
+      "params": {
+        "id": "#addRole.id",
+        "name": "#addRole.name",
+        "description": "#addRole.description"
+      }
+    },
+    {
+      "command": "deleteRoles",
+      "params": {
+        "ids": "#addRole.id"
+      }
+    },
+    {
+      "command": "listUserRoles",
+      "params": {
+        "userId": "27"
+      }
+    },
+    {
+      "command": "queryRoleUser",
+      "params": {
+        "roleId": "27"
+      }
+    }
+  ]
+}

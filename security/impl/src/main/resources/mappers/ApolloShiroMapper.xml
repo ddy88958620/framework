@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shiro.query">
+
+  <select id="getSecurityUser" parameterType="map" resultType="com.handu.apollo.security.domain.SecurityUser">
+    SELECT
+      su.id,
+      su.user_name as username,
+      su.email,
+      su.real_name as realname,
+      su.password,
+      su.salt,
+      su.removed,
+      sd.id as departmentId,
+      sd.name as departmentName,
+      sd.code as departmentCode,
+      sper.id as personId,
+      sper.company as companyId,
+      sp.id as positionId,
+      sp.name as positionName,
+      sp.code as positionCode
+    FROM
+      sys_users su
+    LEFT JOIN sys_department sd ON sd.id = su.department_id
+    LEFT JOIN sys_persons sper ON su.id = sper.user_id
+    LEFT JOIN sys_position sp ON sp.id = sper.position_id
+    WHERE
+      (user_name = #{username} OR su.email= #{username})
+  </select>
+
+  <select id="getSecurityRoles" parameterType="long" resultType="string">
+    SELECT r.name FROM sys_role r
+      INNER JOIN sys_user_role ur ON ur.role_id = r.id
+    WHERE ur.user_id = #{userId}
+  </select>
+
+  <select id="getSecurityPermissions" parameterType="long" resultType="string">
+    SELECT rc.cmd_id FROM sys_role_cmd rc, (
+      SELECT role_id AS ur_roleId FROM sys_user_role WHERE user_id = #{userId}
+    ) ur WHERE rc.role_id = ur.ur_roleId
+  </select>
+
+  <select id="getSecurityPermissionsByMisid" parameterType="map" resultType="string">
+    SELECT cl.code
+    FROM
+    sys_role_cmd rc,
+    sys_cmd_list cl,
+    (
+    SELECT role_id AS ur_roleId FROM sys_user_role WHERE user_id = #{userId}
+    ) ur
+    WHERE rc.role_id = ur.ur_roleId
+           AND rc.cmd_id = cl.id
+           AND cl.mis_id = #{misId}
+  </select>
+
+  <select id="getSecurityUserPk" parameterType="string" resultType="long">
+    SELECT id FROM sys_users WHERE user_name = #{username}
+  </select>
+
+</mapper>

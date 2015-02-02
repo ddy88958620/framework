@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.handu.apollo.data.TreeService">
+
+  <select id="getCodeById" parameterType="map" resultType="string">
+    SELECT code FROM ${tableName} WHERE id = #{id}
+  </select>
+
+  <select id="getLastCodeByParent" parameterType="map" resultType="string">
+    SELECT code FROM ${tableName} WHERE parent_id = #{parentId} ORDER BY code DESC LIMIT 1;
+  </select>
+
+  <select id="likeByCode" parameterType="map" resultType="hashmap">
+    SELECT id, code FROM ${tableName} WHERE code LIKE #{code}
+  </select>
+
+  <update id="updateCode" parameterType="map">
+    UPDATE
+      ${tableName}
+    SET
+      code = #{code}
+    WHERE
+      id = #{id}
+  </update>
+
+  <update id="updateParentIdCode" parameterType="map">
+    UPDATE
+      ${tableName}
+    SET
+      parent_id = #{parentId},
+      code = #{code}
+    WHERE
+      id = #{id}
+  </update>
+
+  <update id="updateLeaf">
+    UPDATE ${tableName}
+    SET leaf = '1'
+    WHERE
+      id IN (
+        SELECT
+          a.id
+        FROM
+          (
+            SELECT
+              b.id
+            FROM
+              ${tableName} b
+            WHERE
+              b.id NOT IN (
+                SELECT DISTINCT
+                  c.parent_id
+                FROM
+                  ${tableName} c
+                WHERE c.removed IS NULL
+              ) AND b.removed IS NULL
+          ) a
+      ) AND removed IS NULL
+  </update>
+
+  <update id="updateNotLeaf">
+    UPDATE ${tableName}
+    SET leaf = '0'
+    WHERE
+      id NOT IN (
+        SELECT
+          a.id
+        FROM
+          (
+            SELECT
+              b.id
+            FROM
+              ${tableName} b
+            WHERE
+              b.id NOT IN (
+                SELECT DISTINCT
+                  c.parent_id
+                FROM
+                  ${tableName} c
+                WHERE c.removed IS NULL
+              ) AND b.removed IS NULL
+          ) a
+      ) AND removed IS NULL
+  </update>
+
+</mapper>

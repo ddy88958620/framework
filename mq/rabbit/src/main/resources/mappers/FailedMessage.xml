@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.handu.apollo.mq.rabbit.listener.WriteToDatabaseErrorHandler">
+
+  <select id="add" parameterType="map">
+    INSERT INTO mq_failed_message (id, body, properties) VALUES (#{id}, #{body}, #{properties})
+  </select>
+
+</mapper>

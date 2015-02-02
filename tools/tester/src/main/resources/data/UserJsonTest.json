@@ -1,0 +1,61 @@
+{
+  "group": "用户管理模块",
+  "test": true,
+  "cmdlist": [
+    {
+      "command": "addUser",
+      "cache": true,
+      "params": {
+        "username": "apitest",
+        "email": "test@test.com",
+        "password": "password",
+        "realname": "realname",
+        "departmentId": "3"
+      }
+    },
+    {
+      "command": "listUsers",
+      "params": {
+        "id": "#addUser.id",
+        "username": "#addUser.username",
+        "email": "#addUser.email",
+        "password": "#addUser.password",
+        "realname": "#addUser.realname",
+        "departmentId": "#addUser.departmentId"
+      }
+    },
+    {
+      "command": "updateUser",
+      "params": {
+        "id": "#addUser.id",
+        "username": "#addUser.username",
+        "email": "#addUser.email",
+        "password": "#addUser.password",
+        "realname": "#addUser.realname",
+        "departmentId": "#addUser.departmentId"
+      }
+    },
+    {
+      "command": "deleteUser",
+      "params": {
+        "id": "#addUser.id"
+      }
+    },
+    {
+      "command": "listOutOfUsers",
+      "params": {
+        "departmentId": "27",
+        "page": "1",
+        "pagesize": "5",
+        "order": "id"
+      }
+    },
+    {
+      "command": "updateUsers",
+      "params": {
+        "departmentId": "27",
+        "ids": "31,32"
+      }
+    }
+  ]
+}

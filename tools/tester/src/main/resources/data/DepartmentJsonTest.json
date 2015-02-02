@@ -1,0 +1,45 @@
+{
+  "group": "部门管理模块",
+  "test": true,
+  "cmdlist": [
+    {
+      "command": "addDepartment",
+      "cache": true,
+      "params": {
+        "name": "测试",
+        "abc": "测试ABC",
+        "parentId": "1",
+        "phone": "110",
+        "description": "testdescription"
+      }
+    },
+    {
+      "command": "listDepartments",
+      "params": {
+        "id": "#addDepartment.id",
+        "name": "#addDepartment.name",
+        "abc": "#addDepartment.abc",
+        "parentId": "#addDepartment.parentId",
+        "phone": "#addDepartment.phone",
+        "description": "#addDepartment.description"
+      }
+    },
+    {
+      "command": "updateDepartment",
+      "params": {
+        "id": "#addDepartment.id",
+        "name": "测试1",
+        "abc": "测试ABC1",
+        "parentId": "11",
+        "phone": "1101",
+        "description": "testdescription1"
+      }
+    },
+    {
+      "command": "deleteDepartment",
+      "params": {
+        "id": "#addDepartment.id"
+      }
+    }
+  ]
+}

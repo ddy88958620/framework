@@ -1,0 +1,56 @@
+{
+  "group": "菜单管理模块",
+  "test": true,
+  "cmdlist": [
+    {
+      "command": "addMenu",
+      "cache": true,
+      "cachekey": "addMenu",
+      "expect": "success",
+      "params": {
+        "parentId": "1",
+        "type": "group",
+        "name": "testmenu",
+        "menuUrl": "",
+        "menuIcon": "",
+        "code": "test",
+        "treeOrder": "100",
+        "description": "testdescription"
+      }
+    },
+    {
+      "command": "listMenus",
+      "params": {
+        "id": "#addMenu.id",
+        "parentId": "#addMenu.parentId",
+        "type": "#addMenu.type",
+        "name": "#addMenu.name",
+        "menuUrl": "#addMenu.menuUrl",
+        "menuIcon": "#addMenu.menuIcon",
+        "code": "#addMenu.code",
+        "treeOrder": "#addMenu.treeOrder",
+        "description": "#addMenu.description"
+      }
+    },
+    {
+      "command": "updateMenu",
+      "params": {
+        "id": "#addMenu.id",
+        "parentId": "#addMenu.parentId",
+        "type": "#addMenu.type",
+        "name": "#addMenu.name",
+        "menuUrl": "#addMenu.menuUrl",
+        "menuIcon": "#addMenu.menuIcon",
+        "code": "#addMenu.code",
+        "treeOrder": "#addMenu.treeOrder",
+        "description": "#addMenu.description"
+      }
+    },
+    {
+      "command": "deleteMenu",
+      "params": {
+        "id": "#addMenu.id"
+      }
+    }
+  ]
+}

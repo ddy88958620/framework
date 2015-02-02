@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.handu.apollo</groupId>
+  <artifactId>apollo</artifactId>
+  <version>1.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>韩都衣舍阿波罗</name>
+  <description>阿波罗是韩都衣舍的运营支撑系统</description>
+  <url>http://www.handu.com</url>
+  <inceptionYear>2014</inceptionYear>
+
+  <organization>
+    <name>韩都衣舍</name>
+    <url>http://www.handu.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>The Hando Apollo Team</name>
+      <email>apollo-dev@handu.com</email>
+      <url>http://apollo.handu.com/</url>
+      <organization>韩都衣舍</organization>
+      <organizationUrl>http://www.handu.com/</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:http://192.168.1.202/apollo/apollo.git</connection>
+    <developerConnection>scm:git:http://192.168.1.202/apollo/apollo.git</developerConnection>
+  </scm>
+
+  <issueManagement>
+    <system>redmine</system>
+    <url>http://192.168.1.201/projects/apollo/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Gitlab CI</system>
+    <url>http://192.168.1.207/projects/1</url>
+  </ciManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>apollo-releases</id>
+      <name>Handu Apollo Release Repository</name>
+      <url>http://192.168.1.208/content/repositories/apollo-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>apollo-snapshots</id>
+      <name>Handu Apollo Snapshot Repository</name>
+      <url>http://192.168.1.208/content/repositories/apollo-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>apollo-releases</id>
+      <url>http://192.168.1.208/content/repositories/apollo-releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>apollo-snapshots</id>
+      <url>http://192.168.1.208/content/repositories/apollo-snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <modules>
+    <module>parent</module>
+    <module>utils</module>
+    <module>db</module>
+    <module>cache</module>
+    <module>web</module>
+    <module>security</module>
+    <module>plugins</module>
+    <module>tools</module>
+    <module>mq</module>
+  </modules>
+
+  <build>
+    <defaultGoal>clean install</defaultGoal>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.17</version>
+          <configuration>
+            <argLine>-Dfile.encoding=UTF-8 -Xmx1024m</argLine>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>

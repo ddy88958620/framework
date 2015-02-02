@@ -1,0 +1,55 @@
+{
+  "group": "数据字典模块",
+  "test": true,
+  "cmdlist": [
+    {
+      "command": "addDataDictionary",
+      "cache": true,
+      "cachekey": "addDataDictionary",
+      "params": {
+        "parentId": "1",
+        "treetype": "group",
+        "treeorder": "testmenu",
+        "ddcode": "test-test-test-11",
+        "ddname": "test",
+        "ddvalue": "test",
+        "description": "testdescription"
+      }
+    },
+    {
+      "command": "listDatadictionaries",
+      "params": {
+        "parentId": "#addDataDictionary.parentId",
+        "treetype": "#addDataDictionary.treetype",
+        "treeorder": "#addDataDictionary.treeorder",
+        "ddname": "#addDataDictionary.ddname",
+        "ddvalue": "#addDataDictionary.ddvalue",
+        "description": "#addDataDictionary.description"
+      }
+    },
+    {
+      "command": "updateDataDictionary",
+      "params": {
+        "id": "#addDataDictionary.id",
+        "parentId": "1",
+        "treetype": "group",
+        "treeorder": "testmenu",
+        "ddname": "test",
+        "ddvalue": "test",
+        "description": "testdescription"
+      }
+    },
+    {
+      "command": "deleteDataDictionary",
+      "params": {
+        "id": "#addDataDictionary.id"
+      }
+    },
+    {
+      "command": "updateCache",
+      "params": {
+        "updateChacheId": "#addDataDictionary.id"
+      }
+    }
+  ]
+}
